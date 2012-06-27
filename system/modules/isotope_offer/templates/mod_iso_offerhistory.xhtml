@@ -1,0 +1,29 @@
+
+<!-- indexer::stop -->
+<div class="<?php echo $this->class; ?> block"<?php echo $this->cssID; ?><?php if ($this->style): ?> style="<?php echo $this->style; ?>"<?php endif; ?>>
+<?php if ($this->headline): ?>
+
+<<?php echo $this->hl; ?>><?php echo $this->headline; ?></<?php echo $this->hl; ?>>
+<?php endif; ?>
+
+<table cellspacing="0" cellpadding="0" summary="Shop offers">
+	<tr>
+		<th><?php echo $this->dateLabel; ?></th>
+		<th><?php echo $this->quantityLabel; ?></th>
+		<th><?php echo $this->subTotalLabel; ?></th>
+		<th><?php echo $this->statusLabel; ?></th>
+		<th>&nbsp;</th>
+	</tr>
+<?php foreach( $this->offers as $offer ): ?>
+	<tr>
+		<td><?php echo $offer['date']; ?></td>
+		<td><?php echo $offer['items']; ?></td>
+		<td><?php echo $offer['grandTotal']; ?></td>
+		<td><?php echo $offer['status']; ?></td>
+		<td><?php if (strlen($offer['link'])): ?><a href="<?php echo $offer['link']; ?>"><?php echo $this->detailsLabel; ?></a><?php endif; ?></td>
+	</tr>
+<?php endforeach; ?>
+</table>
+
+</div>
+<!-- indexer::continue -->
