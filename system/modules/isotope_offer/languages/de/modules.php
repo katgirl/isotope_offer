@@ -32,12 +32,16 @@
 /**
  * Back end modules
  */
-#$GLOBALS['TL_LANG']['MOD'][''] = array('', '');
+$GLOBALS['TL_LANG']['MOD']['iso_offers'][0] = 'Angebote';
+$GLOBALS['TL_LANG']['MOD']['iso_offers'][1] = 'Alle Angebote in Ihrem Online-Shop sind hier ersichtlich.';
 
 
 /**
  * Front end modules
  */
-#$GLOBALS['TL_LANG']['FMD'][''] = array('', '');
+$GLOBALS['TL_LANG']['FMD']['iso_offer'] = array('Angebot', 'Erlaubt Kunden ein Angebot anzufordern.');
+
+
+
 
 ?>

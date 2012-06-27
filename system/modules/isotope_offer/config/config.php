@@ -23,35 +23,54 @@
  * PHP version 5
  * @copyright  Kirsten Roschanski (C) 2012 
  * @author     Kirsten Roschanski 
- * @package    IsotopeCreateOffer 
+ * @package    IsotopeOffer 
  * @license    LGPL 
  * @filesource
  */
-
-/**
- * -------------------------------------------------------------------------
- * HOOKS
- * -------------------------------------------------------------------------
- *
- * Hooking allows you to register one or more callback functions that are 
- * called on a particular event in a specific order. Thus, third party 
- * extensions can add functionality to the core system without having to
- * modify the source code.
- */ 
  
- $GLOBALS['TL_HOOKS']['processFormData'][] = array('IsotopeCreateOffer', 'myProcessFormData');
- $GLOBALS['TL_HOOKS']['outputTemplate'][] = array('IsotopeCreateOffer', 'myOutputFrontendTemplate');
-
-/**
+ /**
  * -------------------------------------------------------------------------
- * PAGE TYPES
+ * Front end modules
  * -------------------------------------------------------------------------
- *
- * Page types and their corresponding front end controller class.
  */
  
- $GLOBALS['TL_ICO']['email'] = 'office@cupprint.de';
- $GLOBALS['TL_ICO']['form']  = 'auto_offer_contact_data'; 
- $GLOBALS['TL_ICO']['site_offer']  = 'send_offer_per_mail';
- $GLOBALS['TL_ICO']['site_order']  = 'send_order_per_mail';
+ $GLOBALS['FE_MOD']['isotope'] = array_merge($GLOBALS['FE_MOD']['isotope'], array
+ (
+	'iso_offer'					=> 'ModuleIsotopeOffer',
+	'iso_offerhistory'		=> 'ModuleIsotopeOfferHistory',
+	'iso_offerdetails'		=> 'ModuleIsotopeOfferDetails',
+ ));
+
+ /**
+ * Offer Statuses
+ */
+ $GLOBALS['ISO_OFFER'] = array('pending', 'processing', 'complete', 'on_hold', 'cancelled');
+
+
+ /**
+  * Backend modules
+  */
+ if (!is_array($GLOBALS['BE_MOD']['isotope']))
+ {
+	array_insert($GLOBALS['BE_MOD'], 1, array('isotope' => array()));
+ }
+
+ array_insert($GLOBALS['BE_MOD']['isotope'], 2, array
+ (
+	'iso_offers' => array
+	(
+		'tables'					=> array('tl_iso_offers', 'tl_iso_offer_items'),
+		'icon'					=> 'system/modules/isotope/html/shopping-basket.png',
+		'javascript'			=> 'system/modules/isotope/html/backend.js',
+		'export_emails'     	=> array('tl_iso_orders', 'exportOfferEmails'),
+		'print_offer'			=> array('tl_iso_offers', 'printOffer'),
+		'print_offers'			=> array('tl_iso_orders', 'printOffers'),
+	),
+ ));
+ 
+if (TL_MODE == 'BE')
+{
+	$GLOBALS['TL_CSS'][] = 'system/modules/isotope_offer/html/backend.css';
+}
+ 
 ?>

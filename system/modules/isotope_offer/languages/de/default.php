@@ -32,7 +32,27 @@
 /**
  * Miscellaneous
  */
-$GLOBALS['TL_LANG']['IsotopeCreateOffer']['subject'] = 'Benutzerdaten für CupPrint';
-$GLOBALS['TL_LANG']['IsotopeCreateOffer']['message'] = 'Benutzername: %s \nPasswort: %s';
+$GLOBALS['TL_LANG']['ERR']['offer_conditions'] = 'Sie müssen die AGB akzeptieren um fortzufahren';
+$GLOBALS['TL_LANG']['ERR']['emptyOrderHistory'] = 'Sie haben noch keine Bestellungen getätigt.';
+$GLOBALS['TL_LANG']['ERR']['offerNotFound'] = 'Die gewünschte Bestellung wurde nicht gefunden.';
+$GLOBALS['TL_LANG']['MSC']['offerDetailsHeadline'] = 'Bestellung Nr. %s vom %s';
+$GLOBALS['TL_LANG']['MSC']['offerByLabel'] = 'Sortieren nach:';
+$GLOBALS['TL_LANG']['MSC']['noOrderEmails'] = 'Keine Bestell-E-Mails gefunden.';
+$GLOBALS['TL_LANG']['MSC']['noOrders'] = 'Keine Bestellungen gefunden.';
+$GLOBALS['TL_LANG']['MSC']['offerStatusHeadline'] = 'Bestell-Status: %s';
+$GLOBALS['TL_LANG']['MSC']['iso_offer_status'] = 'Status';
+$GLOBALS['TL_LANG']['MSC']['iso_offer_date'] = 'Anfragedatum';
+$GLOBALS['TL_LANG']['MSC']['iso_offer_shipping_header'] = 'Versand und Bearbeitung';
+$GLOBALS['TL_LANG']['MSC']['iso_offer_grand_total_header'] = 'Gesamtsumme';
+$GLOBALS['TL_LANG']['MSC']['iso_offer_items'] = 'Artikel';
+$GLOBALS['TL_LANG']['MSC']['iso_offer_sku'] = 'Artikelnr.';
+$GLOBALS['TL_LANG']['MSC']['iso_offer_title'] = 'Angebot';
+$GLOBALS['TL_LANG']['OFFER']['pending'] = 'Anstehend';
+$GLOBALS['TL_LANG']['OFFER']['processing'] = 'In Bearbeitung';
+$GLOBALS['TL_LANG']['OFFER']['complete'] = 'Erledigt';
+$GLOBALS['TL_LANG']['OFFER']['on_hold'] = 'Zurück gestellt';
+$GLOBALS['TL_LANG']['OFFER']['cancelled'] = 'Storniert';
+$GLOBALS['TL_LANG']['ISO']['offer_review'] = 'Bestellübersicht';
+
 
 ?>
