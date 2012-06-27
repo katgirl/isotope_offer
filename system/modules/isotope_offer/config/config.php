@@ -72,5 +72,7 @@ if (TL_MODE == 'BE')
 {
 	$GLOBALS['TL_CSS'][] = 'system/modules/isotope_offer/html/backend.css';
 }
+
+$GLOBALS['TL_HOOKS']['replaceInsertTags'][] = array('IsotopeOffer', 'complete');
  
 ?>
