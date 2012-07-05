@@ -104,19 +104,28 @@ class ModuleIsotopeOffer extends ModuleIsotope
 	}
 	
 	/**
+	 * Return current surcharges as array
+	 * @return array
+	 */
+	public function getSurcharges()
+	{
+		$arrSurcharges = deserialize($this->arrData['surcharges']);
+		return is_array($arrSurcharges) ? $arrSurcharges : array();
+	}	
+	
+	
+	/**
 	 * Save the offer
 	 * @return void
 	 */	
 	protected function writeOffer()
 	{
-		$objOffer = new IsotopeOffer();
+		$objOffer 				= new IsotopeOffer();
+		$objOffer->uniqid	= uniqid($this->Isotope->Config->offerPrefix, true);
+		$objOffer->cart_id	= $this->Isotope->Cart->id;
+		
+		$objOffer->findBy('id', $objOffer->save());
 
-//		if (!$objOffer->findBy('cart_id', $this->Isotope->Cart->id))
-//		{
-			$objOffer->uniqid		= uniqid($this->Isotope->Config->offerPrefix, true);
-			$objOffer->cart_id		= $this->Isotope->Cart->id;
-			$objOffer->findBy('id', $objOffer->save());
-//		}
 		// Isotope has Street as Street_1
 		$_SESSION['FORM_DATA']['street_1'] = $_SESSION['FORM_DATA']['street'];
 		
@@ -132,6 +141,8 @@ class ModuleIsotopeOffer extends ModuleIsotope
 		$objOffer->shippingTotal	= $this->Isotope->Cart->shippingTotal;
 		$objOffer->grandTotal		= $this->Isotope->Cart->grandTotal;
 		$objOffer->surcharges		= $this->Isotope->Cart->getSurcharges();
+		$objOrder->shipping_id		= ($this->Isotope->Cart->hasShipping ? $this->Isotope->Cart->Shipping->id : 1);
+		$objOrder->payment_id		= ($this->Isotope->Cart->hasPayment ? $this->Isotope->Cart->Payment->id : 2);
 		$objOffer->language			= $GLOBALS['TL_LANGUAGE'];
 		$objOffer->billing_address	= $_SESSION['FORM_DATA'];
 		$objOffer->shipping_address	= $_SESSION['FORM_DATA'];
@@ -147,6 +158,11 @@ class ModuleIsotopeOffer extends ModuleIsotope
 				(
 					'headline' => $GLOBALS['TL_LANG']['ISO']['billing_address'],
 					'info' => $strBillingAddress,	
+				),
+				'shipping_method' => array
+				(
+					'headline' => $GLOBALS['TL_LANG']['ISO']['checkout_shipping'],
+					'info' => $this->Isotope->formatPriceWithCurrency($objOffer->shippingTotal, false),					
 				)											
 		);
 		

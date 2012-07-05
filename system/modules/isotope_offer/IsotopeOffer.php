@@ -178,7 +178,6 @@ class IsotopeOffer extends IsotopeProductCollection
 		}
 
 		$arrItemIds = $this->transferFromCollection($objCart);
-//		$objCart->delete();
 
 		$this->checkout_complete = true;
 		$this->status = $this->new_offer_status;
